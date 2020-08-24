@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-function Cake() {
+
+function Bread() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/store/Cake", {
+    fetch("http://localhost:8080/store/Bread", {
       headers: {
         'Access-Control-Allow-Origin': "http://localhost:3000",
-        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTk4MzI3NjgxLCJpYXQiOjE1OTgzMDk2ODF9.XdosRp7rc_JgZmxf20x5DBUR6qgj6OrogE1tFlOhspEjey17njXECg012XCtfMfHsR_HzD0L6iPzPzjneWvXyA'
+        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTk4MzA3OTc1LCJpYXQiOjE1OTgyODk5NzV9.RdSWc-boG74HYpAbnMEISfFzW7qXLCwYKv2mYTjP3ad-2n_AtlauqisBEVX2p2L5EhiABarC5DjEB9qri6savw'
       }
     }
     )
@@ -17,7 +18,7 @@ function Cake() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setCategories(result.Cake);
+          setCategories(result.Bread);
         },
         (error) => {
           setIsLoaded(true);
@@ -35,7 +36,7 @@ function Cake() {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Cake</th>
+              <th scope="col">Bread</th>
               <th scope="col">Time Baked</th>
               <th scope="col">Filling</th>
             </tr>
@@ -56,4 +57,4 @@ function Cake() {
 }
 
 
-export default Cake;
+export default Bread;

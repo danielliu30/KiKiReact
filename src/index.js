@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Navbar, Nav, Form, FormControl, NavbarBrand } from 'react-bootstrap';
+import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useRoutes } from "hookrouter";
 import routes from "./routes";
@@ -37,21 +37,18 @@ function Store() {
           <NavbarBrand>Home</NavbarBrand>
           <Nav className="mr-auto">
             {categories.map(item => (
-              <li key={item.ItemVariation}>
+              <li key={item.rel}>
                 <Nav.Link href={item.href}>{item.href}</Nav.Link>
               </li>
             ))}
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-info">Search</Button>
-          </Form>
         </Navbar>
         {routeResult}
       </div>
     );
   }
 }
+
 
 ReactDOM.render(
   <Store />,
