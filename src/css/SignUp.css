@@ -1,0 +1,16 @@
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+    }
+  
+    .Login {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    #member{
+      margin-left: 0;
+      max-width: 80px;
+    }
+    
+  }

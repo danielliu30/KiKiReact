@@ -9,7 +9,7 @@ function Cake() {
     fetch("http://localhost:8080/store/Cake", {
       headers: {
         'Access-Control-Allow-Origin': "http://localhost:3000",
-        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTk4MzI3NjgxLCJpYXQiOjE1OTgzMDk2ODF9.XdosRp7rc_JgZmxf20x5DBUR6qgj6OrogE1tFlOhspEjey17njXECg012XCtfMfHsR_HzD0L6iPzPzjneWvXyA'
+        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21ldGhpbmdAZW1haWwuY29tIiwiZXhwIjoxNTk5MDAzMjk1LCJpYXQiOjE1OTg5ODUyOTV9.EnyJqd2YYsia3HrZ7yEjEVxO2gNEUgzyWeT9V5pzUBIJ015Ebp7WDIAn70aPYxlfnfrBnpUvDfhH6n4fAve0jA'
       }
     }
     )
