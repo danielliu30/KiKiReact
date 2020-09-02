@@ -5,7 +5,6 @@ import Bread from './componets/Bread'
 import Cookie from './componets/Cookie'
 import Customer from './componets/Customer'
 import SignUp from './componets/SignUp'
-import { Route } from 'react-router-dom'
 import Verified from './componets/Verifed'
 const routes = {
     "/Cake": () => <Cake />,

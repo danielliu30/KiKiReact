@@ -34,7 +34,7 @@ function Store() {
     return (
       <div>
         <Navbar bg="dark" variant="dark">
-          <Nav.Link href="index">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
           <Nav className="mr-auto">
             {categories.map(item => (
               <li key={item.rel}>
