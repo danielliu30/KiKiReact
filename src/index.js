@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useRoutes } from "hookrouter";
 import routes from "./routes";
@@ -42,7 +42,7 @@ function Store() {
               </li>
             ))}
           </Nav>
-          <Nav.Link href="SignUp">Sign Up</Nav.Link>
+          <Nav.Link href="/SignUp">Sign Up</Nav.Link>
         </Navbar>
 
         {routeResult}

@@ -55,13 +55,20 @@ function SignUp() {
 
     if (emailSent) {
         return (
-            <script>
-                function myFunction() {
-                    alert("Email Was Sent!")
-                }
-            </script>
+            <div>
+                <Form>
+                    Submitted!
+                </Form>
+                <script>
+                    function myFunction() {
+                        alert("Email Was Sent!")
+                    }
+                </script>
+            </div>
         );
-    } else {
+        
+    }
+    else {
         return (
             <div className="Login">
                 <form onSubmit={handleSubmit}>
@@ -93,7 +100,7 @@ function SignUp() {
                     </FormGroup>
 
                     <Button block disabled={!validateForm()} onClick={onClick}>
-                        Login
+                        Sign Up
                     </Button>
                 </form>
             </div>
