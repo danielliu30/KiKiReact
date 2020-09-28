@@ -9,7 +9,7 @@ function Customer() {
     fetch("http://localhost:8080/store/customerList", {
       headers: {
         'Access-Control-Allow-Origin': "http://localhost:3000",
-        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21ldGhpbmdAZW1haWwuY29tIiwiZXhwIjoxNTk5MDAzMjk1LCJpYXQiOjE1OTg5ODUyOTV9.EnyJqd2YYsia3HrZ7yEjEVxO2gNEUgzyWeT9V5pzUBIJ015Ebp7WDIAn70aPYxlfnfrBnpUvDfhH6n4fAve0jA'
+        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1OTkyNjkyMzAsImlhdCI6MTU5OTI1MTIzMH0.hvvGR74PSenvAxuvRY9_4Q1kD2OMHUxGjQsWhkPKw0crkUkLQdJRPVmPUSBiO5mKhnDsrkaT1D9o2QCFHUv4kw'
       }
     }
     )

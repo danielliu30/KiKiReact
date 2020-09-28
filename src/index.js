@@ -3,56 +3,33 @@ import ReactDOM from 'react-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useRoutes } from "hookrouter";
-import routes from "./routes";
-
-function Store() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const routeResult = useRoutes(routes);
-  
-  useEffect(() => {
-    fetch("http://localhost:8080/store")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setCategories(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [])
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div>
-        <Navbar bg="dark" variant="dark">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav className="mr-auto">
-            {categories.map(item => (
-              <li key={item.rel}>
-                <Nav.Link href={item.href}>{item.href}</Nav.Link>
-              </li>
-            ))}
-          </Nav>
-          <Nav.Link href="/SignUp">Sign Up</Nav.Link>
-        </Navbar>
-
-        {routeResult}
-      </div>
-    );
-  }
-}
+import routes from "./routes/routes";
+import { Provider } from 'react-redux';
+import {store} from './app/persist';
+import Navigation from './routes/Navigation';
+import persistor from './app/persist'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+import SignUp from './componets/SignUp';
+import Cake from './componets/Cake';
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 ReactDOM.render(
-  <Store />,
+  <Provider store={store}>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route path="/SignUp" component={SignUp} />
+          <Route path="/:id" component={Cake} />
+        </Switch>
+      </Router>
+  </Provider>
+  ,
   document.getElementById('root')
 );
+
+
