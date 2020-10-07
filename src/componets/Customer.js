@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
 function Customer() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
+  let token = useSelector(state => state.token.tokenValue);
   useEffect(() => {
-    fetch("http://localhost:8080/store/customerList", {
-      headers: {
-        'Access-Control-Allow-Origin': "http://localhost:3000",
-        Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1OTkyNjkyMzAsImlhdCI6MTU5OTI1MTIzMH0.hvvGR74PSenvAxuvRY9_4Q1kD2OMHUxGjQsWhkPKw0crkUkLQdJRPVmPUSBiO5mKhnDsrkaT1D9o2QCFHUv4kw'
-      }
-    }
-    )
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setCategories(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
+    if (token.length > 0) {
+      fetch("http://localhost:8080/store/customerList", {
+        headers: {
+          'Access-Control-Allow-Origin': "http://localhost:3000",
+          Authorization: token
         }
+      }
       )
-  }, [])
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setCategories(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
+
+  }, [token])
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -44,8 +48,8 @@ function Customer() {
             {categories.map(item => (
               <tr>
                 <th scope="row"></th>
-                  <td>{item.name}</td>
-                  <td>{item.member}</td>  
+                <td>{item.name}</td>
+                <td>{item.member}</td>
               </tr>
             ))}
           </tbody>

@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import { Navbar, Nav, Form, FormControl, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useSelector } from 'react-redux';
-import {persistor} from '../app/persist'
-
-
-
+import { persistor } from '../app/persist'
+import { Redirect, useHistory } from 'react-router-dom'
+import { StickyContainer, Sticky } from 'react-sticky'
+import { AppBar } from '@material-ui/core';
 
 function Navigation() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [categories, setCategories] = useState([]);
-    const userAccount = useSelector(state => state.userAccount);
+
+    const userAccount = useSelector(state => state.token.userAccount);
 
     useEffect(() => {
         fetch("http://localhost:8080/store")
@@ -30,16 +31,18 @@ function Navigation() {
     }, [])
 
 
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
         return (
-            <div>
+
+            <AppBar position="static">
                 <Navbar bg="dark" expand="lg" variant="dark">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/">KiKi's Bakery</Nav.Link>
                     </Nav>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
@@ -60,36 +63,33 @@ function Navigation() {
 
                         </Nav>
                         {
-                            JSON.stringify(userAccount).length > 2 ?
-                                <Nav className="ml-auto">
-                                    <NavDropdown title={userAccount}>
-                                        <NavDropdown.Item href="">
-                                            Profile
+                            (userAccount.length > 0) ?
+                            <Nav className="ml-auto">
+                                <NavDropdown title={userAccount}>
+                                    <NavDropdown.Item href="">
+                                        Profile
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item href="">
-                                            Settings
+                                    <NavDropdown.Item href="">
+                                        Settings
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item href="/" onClick={()=>persistor.purge()}>
-                                            Logout
+                                    <NavDropdown.Item href="/" onClick={() => persistor.purge()}>
+                                        Logout
                                         </NavDropdown.Item>
-                                    </NavDropdown>
-                                </Nav>
-                                :
+                                    <NavDropdown.Item href="/ShoppingCart" >
+                                        Shopping Cart
+                                        </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
 
-                                <Nav className="ml-auto">
-                                    <Nav.Link href="/SignUp">Log In</Nav.Link>
-                                </Nav>
+
+                            :
+                            <></>
 
                         }
-
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            {/* <Button variant="outline-success">Search</Button> */}
-                        </Form>
                     </Navbar.Collapse>
-
                 </Navbar>
-            </div>
+            </AppBar>
+
         );
     }
 }

@@ -3,13 +3,13 @@ import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
 import {configureStore} from '@reduxjs/toolkit'
-
+import allReducers from '../Security/CombineSlice'
 const persistConfig={
     key:'root',
     storage: storage
 }
 
-const persistedReducer = persistReducer(persistConfig, JWTSlice)
+const persistedReducer = persistReducer(persistConfig, allReducers)
 
 const store = configureStore({
         reducer:persistedReducer

@@ -1,10 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-export const JWTSlice = createSlice({
+const JWTSlice = createSlice({
     name:'token',
     initialState:{
         tokenValue:"",
-        userAccount:""
+        userAccount:"",
+        loggedIn:false,
+        shoppingCart:[]
     },
     reducers:{
         setJWTToken:(state, action)=>{
@@ -16,11 +18,17 @@ export const JWTSlice = createSlice({
   
         },
         setUserAccount: (state, action)=>{
-            state.userAccount = action.payload
+            state.userAccount = action.payload;
+            state.loggedIn = true;
+        },
+        addToShoppingCart:(state, action)=>{
+            let copy = state.shoppingCart;
+            copy.push(action.payload);
+            state.shoppingCart = copy;
+       
         }
-    
     }
 })
-export const {setJWTToken, resetStateToken, setUserAccount} = JWTSlice.actions
+export const {setJWTToken, resetStateToken, setUserAccount, addToShoppingCart} = JWTSlice.actions
 
 export default JWTSlice.reducer
