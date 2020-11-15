@@ -1,9 +1,9 @@
-import JWTSlice from '../Security/JWTSlice'
+import JWTSlice from '../componets/Security/JWTSlice'
 import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
 import {configureStore} from '@reduxjs/toolkit'
-import allReducers from '../Security/CombineSlice'
+import allReducers from '../componets/Security/CombineSlice'
 const persistConfig={
     key:'root',
     storage: storage

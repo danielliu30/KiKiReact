@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import List from '@material-ui/core/List';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ShoppingCart() {
+function ShoppingCart(props) {
 
     const classes = useStyles();
     let cart = useSelector(state => state.token.shoppingCart);
@@ -51,8 +51,23 @@ function ShoppingCart() {
                         </Typography>
                     </ListItem>
                 </List>
-               
+                <div className={props.style.buttons}>
+                    <Button href="/">
+                        Cancel
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={props.handleNext}
+
+                    >
+                        Next
+                </Button>
+                </div>
+
             </React.Fragment>
+
         )
     } else {
         return (

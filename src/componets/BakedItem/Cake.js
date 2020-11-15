@@ -66,8 +66,7 @@ function Cake() {
   }, [token,cart])
 
   function addToCart(newItem){
-    let tempItem =[]
-    tempItem.push(newItem)
+
     setCart(newItem)
    
   }

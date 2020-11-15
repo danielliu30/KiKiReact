@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import List from '@material-ui/core/List';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function FinalOrder() {
+function FinalOrder(props) {
     const [cart, setCart] = useState([]);
     const classes = useStyles();
 
@@ -80,6 +80,20 @@ function FinalOrder() {
                     </Grid>
                 </Grid>
             </Grid>
+            <div className={props.style.buttons}>
+                <Button onClick={props.handleBack}>
+                    Back
+                    </Button>
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={props.handleNext}
+
+                >
+                    Submit
+                </Button>
+            </div>
         </React.Fragment>
     )
 
