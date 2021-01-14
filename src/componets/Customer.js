@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 function Customer() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  let token = useSelector(state => state.token.tokenValue);
+  let token = useSelector((state) => state.token.tokenValue);
   useEffect(() => {
     if (token.length > 0) {
       fetch("http://localhost:8080/store/customerList", {
         headers: {
-          'Access-Control-Allow-Origin': "http://localhost:3000",
-          Authorization: token
-        }
-      }
-      )
-        .then(res => res.json())
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          Authorization: token,
+        },
+      })
+        .then((res) => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
@@ -25,10 +24,9 @@ function Customer() {
             setIsLoaded(true);
             setError(error);
           }
-        )
+        );
     }
-
-  }, [token])
+  }, [token]);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -45,7 +43,7 @@ function Customer() {
             </tr>
           </thead>
           <tbody>
-            {categories.map(item => (
+            {categories.map((item) => (
               <tr>
                 <th scope="row"></th>
                 <td>{item.name}</td>
@@ -58,6 +56,5 @@ function Customer() {
     );
   }
 }
-
 
 export default Customer;
